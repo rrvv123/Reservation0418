@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.Chronometer
+import android.widget.DatePicker
 import android.widget.RadioGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
 import android.widget.TextView
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnStart : Button
     lateinit var btnDone : Button
     lateinit var rg : RadioGroup
-    lateinit var calendar : CalendarView
+    lateinit var calendar : DatePicker
     lateinit var timePick : TimePicker
     lateinit var textResult : TextView
     var selectedYear : Int = 0
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         btnStart = findViewById<Button>(R.id.btnStart)
         btnDone = findViewById<Button>(R.id.btnDone)
         rg = findViewById<RadioGroup>(R.id.rg)
-        calendar = findViewById<CalendarView>(R.id.calendar)
+        calendar = findViewById<DatePicker>(R.id.calendar)
         timePick = findViewById<TimePicker>(R.id.timePick)
         textResult = findViewById<TextView>(R.id.textResult)
 
@@ -55,16 +56,18 @@ class MainActivity : AppCompatActivity() {
         btnDone.setOnClickListener {
             chrono.stop()
             chrono.setTextColor(Color.CYAN)
-            textResult.setText("" + selectedYear + "년" + selectedMonth + "월" + selectedDay + "일")
-                                // 코틀린은 정수로 시작하면 오류가 뜨므로 "" 따옴표인 빈문자열로 먼저 시작해줘야함.
+            selectedYear = calendar.year
+            selectedMonth = calendar.month
+            selectedDay = calendar.dayOfMonth
+            textResult.setText("" + selectedYear + "년" + selectedMonth + "월" + selectedDay + "일") // 코틀린은 정수로 시작하면 오류가 뜨므로 "" 따옴표인 빈문자열로 먼저 시작해줘야함.
             textResult.append("" + timePick.currentHour + "시")
             textResult.append("" + timePick.currentMinute + "분")
         }
 
-        calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            selectedYear = year
-            selectedMonth = month + 1
-            selectedDay = dayOfMonth
+        //calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+          //  selectedYear = year
+            //selectedMonth = month + 1
+            //selectedDay = dayOfMonth
         }
     }
 

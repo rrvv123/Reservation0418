@@ -43,7 +43,7 @@
         android:layout_marginTop="@dimen/marginMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <CalendarView
+        <DatePicker
             android:id="@+id/calendar"
             android:showWeekNumber="false"
             android:layout_width="match_parent"
